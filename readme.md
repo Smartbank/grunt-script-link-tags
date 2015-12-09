@@ -31,7 +31,8 @@ In your project's Gruntfile, add a section named `tags` to the data object passe
 			        scriptTemplate: '<script src="{{ path }}"></script>',
 					linkTemplate: '<link href="{{ path }}"/>',
 		            openTag: '<!-- start template tags -->',
-		            closeTag: '<!-- end template tags -->'
+		            closeTag: '<!-- end template tags -->',
+														basePath: '.'
 		        },
 		        src: [
 		            'site/js/**/*.js',
@@ -74,6 +75,14 @@ Type: `String`
 Default value: `<!-- end auto template tags -->`
 
 Specify where in the destination file to stop adding script and link tags.
+
+#### options.basePath
+Type: `String`
+
+Default value: `Path of the destination file`
+
+Specify a path the included script files will be relative to.
+
 
 ### Usage Examples
 

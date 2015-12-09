@@ -11,9 +11,9 @@ module.exports = function (grunt) {
 
     /**
      * Normalize the files paths for window (\) and unix (/)
-     * 
+     *
      * @function normalizePaths
-     * @return {String} 
+     * @return {String}
      */
      function normalizePaths (path) {
         return path.replace(/\\/g, '/');
@@ -59,6 +59,8 @@ module.exports = function (grunt) {
          */
         processedOptions.indent = '';
 
+        processedOptions.basePath = options.basePath;
+
         return processedOptions;
     };
 
@@ -71,7 +73,7 @@ module.exports = function (grunt) {
         var that = this;
         var tagsText = '';
         var fileContents = grunt.file.read(destFile);
-        var filePath = path.dirname(destFile);
+        var basePath = this.options.basePath || path.dirname(destFile);
         var matches = fileContents.match(this.options.getIndentWithTag);
 
         /**
@@ -88,7 +90,7 @@ module.exports = function (grunt) {
 
         srcFiles.forEach(function (srcFile) {
             // calculate the src files path relative to destination path
-            var relativePath = normalizePaths(path.relative(filePath, srcFile));
+            var relativePath = normalizePaths(path.relative(basePath, srcFile));
             tagsText += that.options.indent + that.generateTag(relativePath);
         });
 
